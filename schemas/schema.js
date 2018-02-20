@@ -1,7 +1,8 @@
-const graphql = require('express-graphql');
+const graphql = require('graphql');
 const {
   GraphQLObjectType,
   GraphQLString,
+  GraphQLInt,
   GraphQLSchema
 } = graphql;
 
@@ -26,7 +27,7 @@ const RootQuery = new GraphQLObjectType({
       type: UserType,
       args: { id: { type: GraphQLString } },
       resolve(_value, args) {
-        return users.filter(user => user.id === args.id);
+        return users;
       }
     }
   }
