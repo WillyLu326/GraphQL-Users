@@ -1,0 +1,10 @@
+{
+  "users": [
+    { "id": "1", "name": "Billy", "age": 20 },
+    { "id": "2", "name": "Willy", "age": 40 }
+  ],
+  "companies": [
+    { "id": "C1", "name": "Apple", "decription": "Iphone" },
+    { "id": "C2", "name": "Google", "decription": "Search" }
+  ]
+}
