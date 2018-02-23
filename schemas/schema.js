@@ -1,5 +1,6 @@
 const graphql = require('graphql');
 const _ = require('lodash');
+const axios = require('axios');
 
 const {
   GraphQLObjectType,
@@ -19,6 +20,15 @@ const companies = [
   { id: '2', name: 'C2', location: 'L2' }
 ];
 
+const CompanyType = new GraphQLObjectType({
+  name: 'Company',
+  fields: {
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    description: { type: GraphQLString }
+  }
+});
+
 const UserType = new GraphQLObjectType({
   name: 'User',
   fields: {
@@ -28,14 +38,6 @@ const UserType = new GraphQLObjectType({
   }
 });
 
-const CompanyType = new GraphQLObjectType({
-  name: 'Company',
-  fields: {
-    id: { type: GraphQLString },
-    name: { type: GraphQLString },
-    location: { type: GraphQLString }
-  }
-});
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
@@ -47,19 +49,8 @@ const RootQuery = new GraphQLObjectType({
         name: { type: GraphQLString }
       },
       resolve(_value, args) {
-        return _.find(users, args);
-      }
-    },
-    company: {
-      type: new GraphQLList(CompanyType),
-      args: {
-        id: { type: GraphQLString }
-      },
-      resolve(_value, args) {
-        if (_.isEmpty(args)) {
-          return companies;
-        }
-        return _.filter(companies, company => company.id === args.id);
+        return axios.get(`http://localhost:3000/users/${args.id}`)
+          .then(res => res.data);
       }
     }
   }
