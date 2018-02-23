@@ -1,7 +1,7 @@
 {
   "users": [
-    { "id": "1", "name": "Billy", "age": 20 },
-    { "id": "2", "name": "Willy", "age": 40 }
+    { "id": "1", "name": "Billy", "age": 20, "companyId": "C1" },
+    { "id": "2", "name": "Willy", "age": 30, "companyId": "C2" }
   ],
   "companies": [
     { "id": "C1", "name": "Apple", "decription": "Iphone" },
